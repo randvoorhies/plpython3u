@@ -1,18 +1,33 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-    <name>Template</name>
-    <vendor>JetBrains</vendor>
+    <id>com.github.randvoorhies.plpython3u</id>
+    <name>Better PLPython3U</name>
+    <vendor>Randolph Voorhies</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.python</depends>
+
 
     <extensions defaultExtensionNs="com.intellij">
+        <lang.treePatcher language="Python" order="first" implementationClass="com.github.randvoorhies.plpython3u.PLPythonTreePatcher" />
+
+        <localInspection language="Python" displayName="Test Inspection" groupName="Some Test Inspections" groupPath="SDK"
+                         enabledByDefault="true" level="WARNING" implementationClass="com.github.randvoorhies.plpython3u.DemoInspection"
+        />
+
+        <psi.treeChangePreprocessor language="Python" implementation="com.github.randvoorhies.plpython3u.PLPythonTreeChangePreprocessor" />
+
+        <!--
         <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
         <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>
+        -->
     </extensions>
 
     <applicationListeners>
+        <!--
         <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        -->
     </applicationListeners>
 </idea-plugin>
